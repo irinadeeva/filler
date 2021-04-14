@@ -1,0 +1,1 @@
+while true;do leaks -q cspare.filler;sleep 2;clear;done
