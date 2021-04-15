@@ -1,6 +1,6 @@
 #ifndef FILLER_H
 # define FILLER_H
-# include "libft/libft.h"
+# include "../libft/libft.h"
 
 # define ENEMY -2
 # define PLAYER -1
@@ -13,6 +13,8 @@ typedef struct	s_data
     char		**map;
     int			**heatmap;
 }				t_data;
+
+
 
 /*
 ** my_symbol     — player symbol ['O' or 'X']
@@ -38,5 +40,9 @@ void            calculate_heatmap(t_filler *filler);
 t_data          *init_data(void);
 void            parse_piece(t_filler *filler, char *line);
 int		        error(void);
-void            calc_coords(t_filler *filler);
+void            calculate_coordinates(t_filler *filler);
+void free_array(char ***array);
+void    free_board(t_filler *filler);
+void    free_token(t_filler *filler);
+
 #endif

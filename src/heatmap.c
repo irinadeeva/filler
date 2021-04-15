@@ -1,43 +1,5 @@
 #include "filler.h"
 
-void print_heatmap(int **heatmap, int height_y, int width_x)
-{
-    int i;
-    int j;
-
-    i = 0;
-    while (height_y > i)
-    {
-        j = 0;
-        while (width_x > j)
-        {
-            printf(" %2d", heatmap[i][j]);
-            j++;
-        }
-        printf("\n");
-        i++;
-    }
-}
-
-void print_map(char **map, int height_y, int width_x)
-{
-    int i;
-    int j;
-
-    i = 0;
-    while (height_y > i)
-    {
-        j = 0;
-        while (width_x > j)
-        {
-            printf(" %2c", map[i][j]);
-            j++;
-        }
-        printf("\n");
-        i++;
-    }
-}
-
 int ft_abs(int i)
 {
     return (i > 0 ? i : -i);
@@ -131,7 +93,6 @@ void calculate_heatmap(t_filler *filler)
 {
     filler->board->heatmap = init_heatmap(filler->board->height_y, filler->board->width_x);
     convert_input(filler->board, filler->my_symbol, filler->their_symbol);
-    //print_map(filler->board->map, filler->board->height_y, filler->board->width_x);
     manhattan_distance(filler->board);
-    //print_heatmap(filler->board->heatmap, filler->board->height_y, filler->board->width_x);
+
 }

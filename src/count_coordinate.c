@@ -33,7 +33,7 @@ static int	calc_sum(t_data *board, t_data *token, int y, int x)
     return ((player_counter == 1) ? sum : -1);
 }
 
-void		calc_coords(t_filler *filler)
+void		calculate_coordinates(t_filler *filler)
 {
     int	j;
     int	i;

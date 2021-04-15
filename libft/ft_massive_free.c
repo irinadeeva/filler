@@ -17,5 +17,6 @@ void	ft_massive_free(char **p, size_t k)
 	while (k--)
 		ft_strdel(&(p[k]));
 	free(*p);
+	free(p);
 	p = NULL;
 }

@@ -2,19 +2,19 @@
 // Created by Ирина Деева on 10.05.2020.
 //
 
+
 #include "filler.h"
 
 int		error(void)
 {
     write(1, "Error\n", 6);
-    exit(1); // НЕЛЬЗЯ ИСПОЛЬЗОВАТЬ
+    exit(1);
 }
 
 char **parse_map(t_filler *filler)
 {
     char **plot;
     char *line;
-    char **split;
     int i;
 
     line = NULL;
@@ -28,12 +28,13 @@ char **parse_map(t_filler *filler)
         if ((plot[i] = (char *)malloc(filler->board ->width_x + 1)) == NULL)
             error();
         get_next_line(0, &line);
-        ft_strcpy(plot[i++], line + 4); // ОПАСНОЕ МЕСТО
+        ft_strcpy(plot[i++], line + 4);
         ft_strdel(&line);
     }
     plot[i] = NULL;
     return (plot);
 }
+
 
 t_data   *init_data(void)
 {
@@ -54,10 +55,10 @@ void parse_board(t_filler *filler, char *line)
     char **split;
 
     split = ft_strsplit(line, ' ');
-    ft_strdel(&line);
     filler->board = init_data();
     filler->board->height_y = ft_atoi(split[1]);
     filler->board->width_x = ft_atoi(split[2]);
     filler->board->map = parse_map(filler);
     calculate_heatmap(filler);
+    free_array(&split);
 }
