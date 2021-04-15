@@ -10,7 +10,8 @@ SRC =	$(SRC_D)main.c \
 		$(SRC_D)parse_piece.c \
 		$(SRC_D)heatmap.c \
 		$(SRC_D)count_coordinate.c \
-		$(SRC_D)free_memory.c
+		$(SRC_D)free_memory.c \
+		$(SRC_D)initiation.c
 
 
 OBJ_D = ./obj/
