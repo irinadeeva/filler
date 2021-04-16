@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_memmove.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bhugo <marvin@42.fr>                       +#+  +:+       +#+        */
+/*   By: bhugo <bhugo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/31 15:45:15 by bhugo             #+#    #+#             */
-/*   Updated: 2019/06/19 18:29:13 by bhugo            ###   ########.fr       */
+/*   Updated: 2021/04/16 15:19:58 by bhugo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,16 +24,17 @@ void	*ft_memmove(void *dst, const void *src, size_t len)
 	if (d == s && d == NULL)
 		return (NULL);
 	if (s > d)
+	{
 		while (len > i)
 		{
 			d[i] = s[i];
 			i++;
 		}
+	}
 	else
-		while (len > 0)
-		{
-			len--;
+	{
+		while (len-- > 0)
 			*(d + len) = *(s + len);
-		}
+	}
 	return (dst);
 }

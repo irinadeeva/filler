@@ -6,7 +6,7 @@
 /*   By: bhugo <bhugo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/15 20:50:34 by bhugo             #+#    #+#             */
-/*   Updated: 2021/04/15 20:52:09 by bhugo            ###   ########.fr       */
+/*   Updated: 2021/04/16 16:11:17 by bhugo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,4 +58,17 @@ int	**init_heatmap(int height_y, int width_x)
 		i++;
 	}
 	return (plot);
+}
+
+t_point	*init_point(void)
+{
+	t_point	*point;
+
+	point = (t_point *)ft_memalloc(sizeof(t_point));
+	if (point != NULL)
+	{
+		point->y = 0;
+		point->x = 0;
+	}
+	return (point);
 }

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_strstr.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bhugo <marvin@42.fr>                       +#+  +:+       +#+        */
+/*   By: bhugo <bhugo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/16 16:40:51 by bhugo             #+#    #+#             */
-/*   Updated: 2019/06/13 17:29:17 by bhugo            ###   ########.fr       */
+/*   Updated: 2021/04/16 12:57:45 by bhugo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,8 @@
 
 char	*ft_strstr(const char *haystack, const char *needle)
 {
-	char *h;
-	char *n;
+	char	*h;
+	char	*n;
 
 	if (*needle == '\0')
 		return ((char *)haystack);

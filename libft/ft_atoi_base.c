@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   ft_atoi_base.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ffood <ffood@student.42.fr>                +#+  +:+       +#+        */
+/*   By: bhugo <bhugo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/09 14:11:18 by mgrass            #+#    #+#             */
-/*   Updated: 2020/01/29 17:45:44 by ffood            ###   ########.fr       */
+/*   Updated: 2021/04/16 12:25:15 by bhugo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-int		test_base(const char c)
+int	test_base(const char c)
 {
 	int		nb;
 
@@ -27,17 +27,26 @@ int		test_base(const char c)
 	return (nb);
 }
 
-int		ft_atoi_base(const char *str, int base)
+int	check_sing(int neg, int nb)
+{
+	if (neg == 1)
+		return (-nb);
+	return (nb);
+}
+
+int	ft_atoi_base(const char *str, int base)
 {
 	int		neg;
 	int		nb;
 	int		i;
 
 	nb = 0;
+	neg = 0;
 	while (*str == ' ' || *str == '\n' || *str == '\t'
-	|| *str == '\f' || *str == '\r' || *str == '\v')
+		|| *str == '\f' || *str == '\r' || *str == '\v')
 		str++;
-	neg = (*str == '-' ? 1 : 0);
+	if (*str == '-')
+		neg = 1;
 	if (*str == '-' || *str == '+')
 		str++;
 	i = test_base(*str);
@@ -47,5 +56,5 @@ int		ft_atoi_base(const char *str, int base)
 		str++;
 		i = test_base(*str);
 	}
-	return (neg ? -nb : nb);
+	return (check_sing(neg, nb));
 }

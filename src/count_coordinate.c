@@ -6,18 +6,29 @@
 /*   By: bhugo <bhugo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/15 20:10:33 by bhugo             #+#    #+#             */
-/*   Updated: 2021/04/15 21:12:41 by bhugo            ###   ########.fr       */
+/*   Updated: 2021/04/16 16:25:15 by bhugo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "filler.h"
 
-// static int 	calc_fot_piece()
-// {
-	
-// }
+static int 	sum_return(int player_counter, int sum)
+{
+	if (player_counter == 1)
+		return (sum);
+	return (-1);
+}
 
-static int	calc_sum(t_data *board, t_data *token, int y, int x)
+int	calc_piece(t_data *board, t_point *p, int j, int i)
+{
+	if ((p->y + j) < 0 || (p->y + j) >= board->height_y
+		|| (p->x + i) < 0 || (p->x + i) >= board->width_x
+		|| board->heatmap[p->y + j][p->x + i] == PLAYER)
+		return (1);
+	return (0);
+}
+
+static int	calc_sum(t_data *board, t_data *token, t_point *p)
 {
 	int	j;
 	int	i;
@@ -34,44 +45,41 @@ static int	calc_sum(t_data *board, t_data *token, int y, int x)
 		{
 			if (token->map[j][i] == '*')
 			{
-				if ((y + j) < 0 || (y + j) >= board->height_y
-					|| (x + i) < 0 || (x + i) >= board->width_x
-					|| board->heatmap[y + j][x + i] == PLAYER)
+				if (calc_piece(board, p, j, i))
 					return (-1);
-				if (board->heatmap[y + j][x + i] == ENEMY)
+				if (board->heatmap[p->y + j][p->x + i] == ENEMY)
 					player_counter++;
-				sum += board->heatmap[y + j][x + i];
+				sum += board->heatmap[p->y + j][p->x + i];
 			}
 		}
 	}
-	if (player_counter == 1)
-		return (sum);
-	return (-1);
+	return (sum_return(player_counter, sum));
 }
 
 void	calculate_coordinates(t_filler *filler)
 {
-	int	j;
-	int	i;
-	int	sum;
-	int	min_sum;
+	t_point	*p;
+	int		sum;
+	int		min_sum;
 
 	min_sum = INT_MAX;
-	j = -(filler->token->height_y);
-	while (j < filler->board->height_y + filler->token->height_y)
+	p = init_point();
+	p->y = -(filler->token->height_y);
+	while (p->y < filler->board->height_y + filler->token->height_y)
 	{
-		i = -(filler->token->width_x);
-		while (i < filler->board->width_x + filler->token->width_x)
+		p->x = -(filler->token->width_x);
+		while (p->x < filler->board->width_x + filler->token->width_x)
 		{
-			sum = calc_sum(filler->board, filler->token, j, i);
+			sum = calc_sum(filler->board, filler->token, p);
 			if (sum != -1 && sum < min_sum)
 			{
-				filler->y = j;
-				filler->x = i;
+				filler->y = p->y;
+				filler->x = p->x;
 				min_sum = sum;
 			}
-			i++;
+			p->x++;
 		}
-		j++;
+		p->y++;
 	}
+	free(p);
 }

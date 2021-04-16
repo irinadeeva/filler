@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   ft_strsplit.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bhugo <marvin@42.fr>                       +#+  +:+       +#+        */
+/*   By: bhugo <bhugo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/05 17:48:44 by bhugo             #+#    #+#             */
-/*   Updated: 2019/06/19 15:33:11 by bhugo            ###   ########.fr       */
+/*   Updated: 2021/04/16 12:57:20 by bhugo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-static size_t		ft_word_number(char const *str, char c)
+static size_t	ft_word_number(char const *str, char c)
 {
 	size_t	word_number;
 
@@ -29,7 +29,7 @@ static size_t		ft_word_number(char const *str, char c)
 	return (word_number);
 }
 
-static int			ft_wordlen(char const *str, char c)
+static int	ft_wordlen(char const *str, char c)
 {
 	int	len;
 
@@ -42,7 +42,7 @@ static int			ft_wordlen(char const *str, char c)
 	return (len);
 }
 
-static char			*ft_cpy(char *dst, const char *src, size_t len)
+static char	*ft_cpy(char *dst, const char *src, size_t len)
 {
 	size_t	i;
 
@@ -56,7 +56,7 @@ static char			*ft_cpy(char *dst, const char *src, size_t len)
 	return (dst);
 }
 
-char				**ft_strsplit(char const *s, char c)
+char	**ft_strsplit(char const *s, char c)
 {
 	char	**p;
 	size_t	i;
@@ -66,12 +66,14 @@ char				**ft_strsplit(char const *s, char c)
 	if (s == NULL)
 		return (NULL);
 	i = ft_word_number(s, c);
-	if ((p = (char **)malloc(sizeof(p) * (i + 1))) == NULL)
+	p = (char **)malloc(sizeof(p) * (i + 1));
+	if (p == NULL)
 		return (NULL);
 	while (i > k && *s)
 	{
 		s = ft_issymbol(s, c) + s;
-		if ((p[k] = (char *)malloc(ft_wordlen(s, c) + 1)) == NULL)
+		p[k] = (char *)malloc(ft_wordlen(s, c) + 1);
+		if (p[k] == NULL)
 		{
 			ft_massive_free(p, k);
 			return (NULL);

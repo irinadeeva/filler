@@ -6,7 +6,7 @@
 /*   By: bhugo <bhugo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/04 18:20:26 by bhugo             #+#    #+#             */
-/*   Updated: 2019/11/20 20:51:42 by bhugo            ###   ########.fr       */
+/*   Updated: 2021/04/16 15:46:55 by bhugo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,24 +27,23 @@ static int	ft_order(int n)
 	return (order);
 }
 
-char		*ft_itoa(intmax_t n)
+char	*other_cases(intmax_t n)
 {
 	int		sign;
 	char	*p;
 	int		count;
 
 	count = 0;
-	if (n == -2147483648)
-		return (ft_strdup("-2147483648"));
-	if ((sign = n) < 0)
+	sign = n;
+	if (sign < 0)
 	{
 		n = -n;
 		count++;
 	}
 	count = count + ft_order(n);
-	if (!(p = ft_strnew(count)))
+	p = ft_strnew(count);
+	if (p == NULL)
 		return (NULL);
-	n == 0 ? p[0] = '0' : 0;
 	while (n)
 	{
 		p[--count] = n % 10 + '0';
@@ -53,4 +52,13 @@ char		*ft_itoa(intmax_t n)
 	if (sign < 0)
 		p[--count] = '-';
 	return (p);
+}
+
+char	*ft_itoa(intmax_t n)
+{
+	if (n == -2147483648)
+		return (ft_strdup("-2147483648"));
+	if (n == 0)
+		return (ft_strdup("0"));
+	return (other_cases(n));
 }

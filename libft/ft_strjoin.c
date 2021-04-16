@@ -6,7 +6,7 @@
 /*   By: bhugo <bhugo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/21 23:33:26 by bhugo             #+#    #+#             */
-/*   Updated: 2020/02/19 20:47:57 by bhugo            ###   ########.fr       */
+/*   Updated: 2021/04/16 12:54:20 by bhugo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 char	*ft_strjoin(char const *s1, char const *s2)
 {
-	char *p;
+	char	*p;
 
 	if (s1 == NULL || s2 == NULL)
 		exit(-1);

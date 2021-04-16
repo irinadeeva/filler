@@ -6,7 +6,7 @@
 /*   By: bhugo <bhugo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/15 20:10:27 by bhugo             #+#    #+#             */
-/*   Updated: 2021/04/15 20:59:16 by bhugo            ###   ########.fr       */
+/*   Updated: 2021/04/16 16:11:43 by bhugo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,12 @@ typedef struct s_data
 	char		**map;
 	int			**heatmap;
 }				t_data;
+
+typedef struct s_point
+{
+	int			x;
+	int			y;
+}				t_point;
 
 /*
 ** my_symbol     — player symbol ['O' or 'X']
@@ -54,8 +60,9 @@ void			calculate_coordinates(t_filler *filler);
 void			free_array(char ***array);
 void			free_board(t_filler *filler);
 void			free_token(t_filler *filler);
-void		    init_filler(t_filler *filler);
+void			init_filler(t_filler *filler);
 t_data			*init_data(void);
 int				**init_heatmap(int height_y, int width_x);
+t_point			*init_point(void);
 
 #endif
